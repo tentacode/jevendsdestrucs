@@ -1,0 +1,24 @@
+{
+    "name": "tentacode/jevendsdestrucs",
+    "authors": [
+        {
+            "name": "Gabriel Pillet",
+            "email": "contact@gabrielpillet.com"
+        }
+    ],
+    "license": "MIT",
+    "type": "library",
+    "autoload": {
+        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.4"
+    }
+}
