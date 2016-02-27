@@ -1,0 +1,15 @@
+title: Lag Roxane 500, Cherry Sunburst
+text: >
+  Willing to sell this guitar, it's in
+  perfect condition.
+allow_phone_contact: true
+price: 500
+pictures:
+    - data/pictures/guitar-1.jpg
+    - data/pictures/guitar-2.jpg
+leboncoin:
+    category: Instruments de musique
+audiofanzine:
+    product: lag roxane 500
+    condition: Perfect condition
+    with_accessories: false
