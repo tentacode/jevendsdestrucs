@@ -1,11 +1,9 @@
 {
     "name": "tentacode/jevendsdestrucs",
-    "authors": [
-        {
-            "name": "Gabriel Pillet",
-            "email": "contact@gabrielpillet.com"
-        }
-    ],
+    "authors": [{
+        "name": "Gabriel Pillet",
+        "email": "contact@gabrielpillet.com"
+    }],
     "license": "MIT",
     "type": "library",
     "autoload": {
@@ -16,7 +14,9 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "php-di/php-di": "^5.2",
+        "mnapoli/silly": "dev-master"
     },
     "require-dev": {
         "phpspec/phpspec": "^2.4"

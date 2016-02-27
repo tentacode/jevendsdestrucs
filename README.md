@@ -2,13 +2,9 @@
 
 # jevendsdestrucs
 
-Nothing to see here.
+Work in progress.
 
-## Prerequisites
-
-Vagrant
-
-## Setup
+## Try it yourself
 
 ```
 vagrant up
