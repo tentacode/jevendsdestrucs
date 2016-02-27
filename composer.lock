@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "809e45279a8b0be28dbaffe282c80230",
-    "content-hash": "215ab6ac1e1c813a54f74b245819c3c2",
+    "hash": "2c5677b86ee1208fa3ad1a6b615a0c75",
+    "content-hash": "f39756d63842050c352f247451a0a853",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -308,6 +308,60 @@
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
             "time": "2016-02-23 16:17:05"
+        },
+        {
+            "name": "symfony/options-resolver",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/options-resolver.git",
+                "reference": "0d15b40701e1778bdbc206c8545ad423402021c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/0d15b40701e1778bdbc206c8545ad423402021c4",
+                "reference": "0d15b40701e1778bdbc206c8545ad423402021c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\OptionsResolver\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony OptionsResolver Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "config",
+                "configuration",
+                "options"
+            ],
+            "time": "2016-01-21 10:01:50"
         },
         {
             "name": "symfony/polyfill-mbstring",

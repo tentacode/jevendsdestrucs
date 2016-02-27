@@ -14,7 +14,7 @@ class AdSerializerSpec extends ObjectBehavior
 
     function it_deserialize_an_ad()
     {
-        $ad = $this->deserialize('data/ads/ad-example.yml.dist');
+        $ad = $this->deserialize(file_get_contents('data/ads/ad-example.yml.dist'));
 
         $ad->shouldHaveType('Tentacode\Domain\Ad');
         $ad->getTitle()->shouldReturn("Lag Roxane 500, Cherry Sunburst");
@@ -34,5 +34,21 @@ class AdSerializerSpec extends ObjectBehavior
         $leboncoinOptions = $dealerOptions[1];
         $leboncoinOptions->shouldHaveType('Tentacode\Domain\Dealer\LeboncoinOptions');
         $leboncoinOptions->getCategory()->shouldReturn('Instruments de musique');
+    }
+
+    function it_dont_deserialize_invalid_yaml()
+    {
+        $this
+            ->shouldThrow(new \InvalidArgumentException('Not a valid yaml format.'))
+            ->duringDeserialize('foo')
+        ;
+    }
+
+    function it_dont_deserialize_incorrect_yaml()
+    {
+        $this
+            ->shouldThrow("\InvalidArgumentException")
+            ->duringDeserialize('foo: bar')
+        ;
     }
 }
