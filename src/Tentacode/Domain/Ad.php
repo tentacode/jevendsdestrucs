@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Tentacode\Domain;
 
+use Tentacode\Domain\Dealer\AdOptions;
+
 class Ad
 {
     protected $title;
@@ -11,6 +13,7 @@ class Ad
     protected $price;
     protected $allowPhoneContact = false;
     protected $pictures = [];
+    protected $dealerOptions = [];
 
     public function setTitle(string $title)
     {
@@ -60,5 +63,26 @@ class Ad
     public function getPictures(): array
     {
         return $this->pictures;
+    }
+
+    public function addDealerOptions(AdOptions $adOptions)
+    {
+        $sameClassOptions = array_filter($this->dealerOptions, function($options) use ($adOptions) {
+            return get_class($options) === get_class($adOptions);
+        });
+
+        if (sizeof($sameClassOptions) > 0) {
+            throw new \InvalidArgumentException(sprintf(
+                'Cannot add another %s as an option of this type has already been added.',
+                get_class($adOptions)
+            )); 
+        }
+
+        $this->dealerOptions[] = $adOptions;
+    }
+
+    public function getDealerOptions(): array
+    {
+        return $this->dealerOptions;
     }
 }
