@@ -9,7 +9,7 @@ class ApplicationSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Tentacode\Console\Application');
+        $this->shouldHaveType('Silly\Edition\PhpDi\Application');
         $this->shouldHaveType('Silly\Application');
     }
 }
