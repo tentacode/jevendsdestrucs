@@ -67,7 +67,7 @@ class Ad
 
     public function addDealerOptions(AdOptions $adOptions)
     {
-        $sameClassOptions = array_filter($this->dealerOptions, function($options) use ($adOptions) {
+        $sameClassOptions = array_filter($this->dealerOptions, function ($options) use ($adOptions) {
             return get_class($options) === get_class($adOptions);
         });
 
@@ -75,7 +75,7 @@ class Ad
             throw new \InvalidArgumentException(sprintf(
                 'Cannot add another %s as an option of this type has already been added.',
                 get_class($adOptions)
-            )); 
+            ));
         }
 
         $this->dealerOptions[] = $adOptions;

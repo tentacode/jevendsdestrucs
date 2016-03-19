@@ -71,5 +71,5 @@ class AdSerializer
         $resolver->setAllowedTypes('audiofanzine', 'array');
 
         return $resolver->resolve($data);
-    } 
+    }
 }
