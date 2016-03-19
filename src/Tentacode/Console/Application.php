@@ -12,5 +12,5 @@ class Application extends Silly
         parent::__construct($name, $version);
 
         $this->command('sync', SyncCommand::class);
-    } 
+    }
 }

@@ -22,7 +22,7 @@ class AdSpec extends ObjectBehavior
         $this->setPictures(['data/picture.jpg']);
 
         $this->addDealerOptions(new LeboncoinOptions('foo'));
-    } 
+    }
 
     function it_is_initializable()
     {

@@ -11,7 +11,7 @@ class 😂Spec extends ObjectBehavior
     function let()
     {
         $this->beConstructedWith('😍');
-    } 
+    }
 
     function it_is_initializable()
     {
@@ -21,7 +21,7 @@ class 😂Spec extends ObjectBehavior
     function it_should_have_😻()
     {
         $this->😻->shouldBeLike('😍');
-    }  
+    }
 
     function it_can_set_😐()
     {
@@ -29,5 +29,5 @@ class 😂Spec extends ObjectBehavior
 
         $this->set😐($😐);
         $this->get😐()->shouldReturn($😐);
-    } 
+    }
 }
