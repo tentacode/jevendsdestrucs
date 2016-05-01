@@ -69,7 +69,7 @@ class LeboncoinCrawler extends AbstractCrawler
         foreach ($pictures as $key => $picture) {
             $this->findField('image'.$key)->attachFile($this->getPicturePath($picture));
 
-            $this->spins(function() use ($key) {
+            $this->spins(function () use ($key) {
                 $uploadPhoto = $this->find('css', '#uploadPhoto-'.$key);
 
                 if ($uploadPhoto->getAttribute('data-state') !== 'uploaded') {
@@ -78,7 +78,7 @@ class LeboncoinCrawler extends AbstractCrawler
             });
         }
 
-        $this->spins(function() {
+        $this->spins(function () {
             $emailField = $this->find('css', '#email');
             if (!$emailField || $emailField->getAttribute('value') !== $this->profile->getLeboncoinEmail()) {
                 throw new \RuntimeException("User not properly authenticated.");
@@ -87,17 +87,17 @@ class LeboncoinCrawler extends AbstractCrawler
 
         $this->pressButton('newadSubmit');
 
-        $this->spins(function() {
+        $this->spins(function () {
             $rulesField =  $this->findField('accept_rule');
-            if ($rulesField) {
-                $rulesField->check();
 
-                $this->find('css', 'h2.title')->click();
-
-                $this->pressButton('lbc_submit');
-            } else {
+            if (!$rulesField) {
                 throw new \Exception("Rule checkbox not found.");
             }
+
+            $rulesField->check();
+            $this->find('css', 'h2.title')->click();
+
+            $this->pressButton('lbc_submit');
         });
 
         $this->assert()->pageTextContains(self::AD_ACCEPTED);

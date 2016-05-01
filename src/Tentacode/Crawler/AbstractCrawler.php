@@ -74,6 +74,10 @@ abstract class AbstractCrawler
             'https://wsend.net/upload_cli'
         ), $output, $return);
 
+        if (!$return) {
+            return 'Not available';
+        }
+
         return $output[0];
     }
 
