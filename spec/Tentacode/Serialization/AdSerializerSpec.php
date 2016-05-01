@@ -18,7 +18,7 @@ class AdSerializerSpec extends ObjectBehavior
 
         $ad->shouldHaveType('Tentacode\Domain\Ad');
         $ad->getTitle()->shouldReturn("Lag Roxane 500, Cherry Sunburst");
-        $ad->getText()->shouldReturn("Willing to sell this guitar, it's in perfect condition.\n");
+        $ad->getText()->shouldReturn("Willing to sell this guitar, it's in perfect condition.\n\nWow\n");
         $ad->getPrice()->shouldReturn(500);
         $ad->getAllowPhoneContact()->shouldReturn(true);
         $ad->getPictures()->shouldReturn(['data/pictures/guitar-1.jpg', 'data/pictures/guitar-2.jpg']);
@@ -39,7 +39,7 @@ class AdSerializerSpec extends ObjectBehavior
     function it_dont_deserialize_invalid_yaml()
     {
         $this
-            ->shouldThrow(new \InvalidArgumentException('Not a valid yaml format.'))
+            ->shouldThrow(new \InvalidArgumentException('Not a valid yaml format for ad.'))
             ->duringDeserialize('foo')
         ;
     }

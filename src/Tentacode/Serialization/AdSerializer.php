@@ -18,7 +18,7 @@ class AdSerializer
 
         $data = $parser->parse($yaml);
         if (!is_array($data)) {
-            throw new \InvalidArgumentException('Not a valid yaml format.');
+            throw new \InvalidArgumentException('Not a valid yaml format for ad.');
         }
 
         $resolved = $this->resolve($data);
@@ -67,8 +67,6 @@ class AdSerializer
         $resolver->setAllowedTypes('price', 'int');
         $resolver->setAllowedTypes('allow_phone_contact', 'bool');
         $resolver->setAllowedTypes('pictures', 'array');
-        $resolver->setAllowedTypes('leboncoin', 'array');
-        $resolver->setAllowedTypes('audiofanzine', 'array');
 
         return $resolver->resolve($data);
     }

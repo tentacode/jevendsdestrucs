@@ -56,10 +56,22 @@ class SyncCommand
 
         foreach ($dealerOptions as $dealerOption) {
             if ($dealerOption instanceof LeboncoinOptions) {
-                $this->synchronizeLeboncoin($ad);
+                try {
+                    $this->synchronizeLeboncoin($ad);
+                } catch (\Exception $e) {
+                    $this->leboncoinCrawler->takeScreenshot();
+                    throw $e;
+                }
+
                 continue;
             } elseif ($dealerOption instanceof AudiofanzineOptions) {
-                $this->synchronizeAudiofanzine($ad);
+                try {
+                    $this->synchronizeAudiofanzine($ad);
+                } catch (\Exception $e) {
+                    $this->audiofanzineCrawler->takeScreenshot();
+                    throw $e;
+                }
+
                 continue;
             }
 

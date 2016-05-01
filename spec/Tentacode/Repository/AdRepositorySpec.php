@@ -10,7 +10,7 @@ class AdRepositorySpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(new AdSerializer);
+        $this->beConstructedWith(new AdSerializer, '*.yml.dist');
     }
 
     function it_is_initializable()

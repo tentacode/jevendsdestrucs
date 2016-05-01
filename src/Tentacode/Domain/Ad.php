@@ -85,4 +85,15 @@ class Ad
     {
         return $this->dealerOptions;
     }
+
+    public function getDealerOption($class): AdOptions
+    {
+        foreach ($this->dealerOptions as $dealerOption) {
+            if (get_class($dealerOption) == $class) {
+                return $dealerOption;
+            }
+        }
+
+        throw new \InvalidArgumentException(sprintf('No dealer options with class "%s".', $class));
+    }
 }

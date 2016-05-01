@@ -10,10 +10,12 @@ use Tentacode\Serialization\AdSerializer;
 class AdRepository
 {
     protected $adSerializer;
+    protected $filePattern;
 
-    public function __construct(AdSerializer $adSerializer)
+    public function __construct(AdSerializer $adSerializer, $filePattern = '*.yml')
     {
         $this->adSerializer = $adSerializer;
+        $this->filePattern = $filePattern;
     }
 
     public function getAds(): array
@@ -21,7 +23,7 @@ class AdRepository
         $ads = [];
 
         $finder = new Finder();
-        $finder->files()->in($this->getAdsDirectory());
+        $finder->files()->name($this->filePattern)->in($this->getAdsDirectory());
 
         foreach ($finder as $file) {
             $ads[] = $this->adSerializer->deserialize(file_get_contents($file->getRealPath()));

@@ -19,7 +19,7 @@ class AudiofanzineCrawler extends AbstractCrawler
 
     protected function adExists(Ad $ad): bool
     {
-        return $ad->getTitle();
+        return $ad->getTitle() === '';
     }
 
     protected function addAd(Ad $ad)
