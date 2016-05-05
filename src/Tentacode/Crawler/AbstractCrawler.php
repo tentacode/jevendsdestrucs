@@ -58,7 +58,7 @@ abstract class AbstractCrawler
 
         $url = $this->getScreenshotUrl($filename);
 
-        print sprintf("Screenshot is available : %s\n", $url);
+        print sprintf("Screenshot: %s\n", $url);
     }
 
     protected function getScreenshotUrl($filename)
@@ -74,7 +74,7 @@ abstract class AbstractCrawler
             'https://wsend.net/upload_cli'
         ), $output, $return);
 
-        if (!$return) {
+        if ($return != 0) {
             return 'Not available';
         }
 
