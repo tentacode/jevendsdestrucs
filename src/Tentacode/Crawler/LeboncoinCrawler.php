@@ -16,8 +16,6 @@ class LeboncoinCrawler extends AbstractCrawler
 
     const AD_ACCEPTED = 'Nous avons bien reçu votre annonce.';
 
-    protected $offerIndex = 0;
-
     protected function isLoggedIn(): bool
     {
         $this->visit(self::ACCOUNT_URL);
@@ -55,8 +53,7 @@ class LeboncoinCrawler extends AbstractCrawler
 
     protected function addAd(Ad $ad)
     {
-        $this->visit(self::ADD_AD_URL . $this->offerIndex);
-        $this->offerIndex++;
+        $this->clickLink("Déposer une annonce");
 
         $leboncoinOptions = $ad->getDealerOption(LeboncoinOptions::class);
 
