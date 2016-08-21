@@ -1,8 +1,10 @@
 .vagrant
-bin
-data/ads/*.yml
-data/config/*.yml
-data/pictures
-logs
-tags
-vendor
+/bin/*
+!/bin/app
+/data/ads/*.yml
+/data/config/*.yml
+/data/pictures
+/logs/*
+!/logs/.gitkeep
+/tags
+/vendor
