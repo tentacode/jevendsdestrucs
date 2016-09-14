@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Tentacode\Serialization;
 
 use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Dumper;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tentacode\Domain\Ad;
 use Tentacode\Domain\Dealer\AudiofanzineOptions;
@@ -29,6 +30,7 @@ class AdSerializer
         $ad->setPrice($resolved['price']);
         $ad->setAllowPhoneContact($resolved['allow_phone_contact']);
         $ad->setPictures($resolved['pictures']);
+        $ad->setIsProcessed($resolved['is_processed']);
 
         if (isset($resolved['audiofanzine'])) {
             $ad->addDealerOptions(new AudiofanzineOptions(
@@ -60,6 +62,7 @@ class AdSerializer
             'pictures' => [],
             'leboncoin' => null,
             'audiofanzine' => null,
+            'is_processed' => false,
         ]);
 
         $resolver->setAllowedTypes('title', 'string');
@@ -69,5 +72,12 @@ class AdSerializer
         $resolver->setAllowedTypes('pictures', 'array');
 
         return $resolver->resolve($data);
+    }
+
+    public function serialize(Ad $ad): string
+    {
+        $dumper = new Dumper();
+
+        return $dumper->dump()
     }
 }

@@ -14,6 +14,8 @@ class Ad
     protected $allowPhoneContact = false;
     protected $pictures = [];
     protected $dealerOptions = [];
+    protected $isProcessed = false;
+    protected $path;
 
     public function setTitle(string $title)
     {
@@ -95,5 +97,25 @@ class Ad
         }
 
         throw new \InvalidArgumentException(sprintf('No dealer options with class "%s".', $class));
+    }
+
+    public function setIsProcessed($isProcessed)
+    {
+        $this->isProcessed = $isProcessed;
+    }
+
+    public function isProcessed(): bool
+    {
+        return $this->isProcessed;
+    }
+
+    public function setPath(string $path)
+    {
+        $this->path = $path;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
     }
 }

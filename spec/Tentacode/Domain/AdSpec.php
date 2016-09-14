@@ -20,6 +20,7 @@ class AdSpec extends ObjectBehavior
         $this->setPrice(100);
         $this->setAllowPhoneContact(true);
         $this->setPictures(['data/picture.jpg']);
+        $this->setPath('ad-example.yml');
 
         $this->addDealerOptions(new LeboncoinOptions('foo'));
     }
@@ -70,5 +71,17 @@ class AdSpec extends ObjectBehavior
             )))
             ->duringAddDealerOptions($anotherOptions)
         ;
+    }
+
+    function it_tells_if_processed()
+    {
+        $this->isProcessed()->shouldReturn(false);
+        $this->setIsProcessed(true);
+        $this->isProcessed()->shouldReturn(true);
+    }
+
+    function it_has_a_path()
+    {
+        $this->getPath()->shouldReturn('ad-example.yml');
     }
 }

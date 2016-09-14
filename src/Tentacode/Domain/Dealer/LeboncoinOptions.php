@@ -4,9 +4,10 @@ declare(strict_types = 1);
 
 namespace Tentacode\Domain\Dealer;
 
-class LeboncoinOptions implements AdOptions
+class LeboncoinOptions extends AdOptions
 {
     protected $category;
+    protected $isProcessed;
 
     public function __construct(string $category)
     {

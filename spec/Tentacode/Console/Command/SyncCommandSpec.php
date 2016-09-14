@@ -33,7 +33,7 @@ class SyncCommandSpec extends ObjectBehavior
         $this->shouldHaveType('Tentacode\Console\Command\SyncCommand');
     }
 
-    function it_synchronize_an_ad_on_leboncoin($output, $ad, LeboncoinOptions $leboncoinOptions)
+    function it_synchronize_an_ad_on_leboncoin($output, $ad, $adRepository, LeboncoinOptions $leboncoinOptions)
     {
         $ad->getDealerOptions()->willReturn([
             $leboncoinOptions
@@ -41,11 +41,12 @@ class SyncCommandSpec extends ObjectBehavior
 
         $output->writeln('<info>Syncing offers...</info>')->shouldBeCalled();
         $output->writeln('<info>Ad "Guitar" was synced on Leboncoin.</info>')->shouldBeCalled();
+        $adRepository->updateAd($ad)->shouldBeCalled();
 
         $this->__invoke($output);
     }
 
-    function it_synchronize_an_ad_on_audiofanzine($output, $ad, AudiofanzineOptions $audiofanzineOptions)
+    function it_synchronize_an_ad_on_audiofanzine($output, $ad, $adRepository, AudiofanzineOptions $audiofanzineOptions)
     {
         $ad->getDealerOptions()->willReturn([
             $audiofanzineOptions
@@ -53,6 +54,7 @@ class SyncCommandSpec extends ObjectBehavior
 
         $output->writeln('<info>Syncing offers...</info>')->shouldBeCalled();
         $output->writeln('<info>Ad "Guitar" was synced on Audiofanzine.</info>')->shouldBeCalled();
+        $adRepository->updateAd($ad)->shouldBeCalled();
 
         $this->__invoke($output);
     }

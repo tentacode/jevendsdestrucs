@@ -14,13 +14,15 @@ class AdSerializerSpec extends ObjectBehavior
 
     function it_deserialize_an_ad()
     {
-        $ad = $this->deserialize(file_get_contents('data/ads/ad-example.yml.dist'));
+        $fileContent = file_get_contents('data/ads/ad-example.yml.dist');
+        $ad = $this->deserialize($fileContent);
 
         $ad->shouldHaveType('Tentacode\Domain\Ad');
         $ad->getTitle()->shouldReturn("Lag Roxane 500, Cherry Sunburst");
         $ad->getText()->shouldReturn("Willing to sell this guitar, it's in perfect condition.\n\nWow\n");
         $ad->getPrice()->shouldReturn(500);
         $ad->getAllowPhoneContact()->shouldReturn(true);
+        $ad->isProcessed()->shouldReturn(false);
         $ad->getPictures()->shouldReturn(['data/pictures/guitar-1.jpg', 'data/pictures/guitar-2.jpg']);
 
         $dealerOptions = $ad->getDealerOptions();
@@ -34,6 +36,8 @@ class AdSerializerSpec extends ObjectBehavior
         $leboncoinOptions = $dealerOptions[1];
         $leboncoinOptions->shouldHaveType('Tentacode\Domain\Dealer\LeboncoinOptions');
         $leboncoinOptions->getCategory()->shouldReturn('Instruments de musique');
+
+        $this->serialize($ad)->shouldReturn($fileContent);
     }
 
     function it_dont_deserialize_invalid_yaml()

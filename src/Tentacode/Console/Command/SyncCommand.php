@@ -62,8 +62,6 @@ class SyncCommand
                     $this->leboncoinCrawler->takeScreenshot();
                     throw $e;
                 }
-
-                continue;
             } elseif ($dealerOption instanceof AudiofanzineOptions) {
                 try {
                     $this->synchronizeAudiofanzine($ad);
@@ -71,14 +69,15 @@ class SyncCommand
                     $this->audiofanzineCrawler->takeScreenshot();
                     throw $e;
                 }
-
-                continue;
+            } else {
+                throw new \InvalidArgumentException(sprintf(
+                    'Unsupported dealer options "%s".',
+                    get_class($dealerOptions)
+                ));
             }
 
-            throw new \InvalidArgumentException(sprintf(
-                'Unsupported dealer options "%s".',
-                get_class($dealerOptions)
-            ));
+            $dealerOption->setIsProcessed(true);
+            $this->adRepository->updateAd($ad);
         }
     }
 

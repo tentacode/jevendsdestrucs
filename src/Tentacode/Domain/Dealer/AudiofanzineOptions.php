@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Tentacode\Domain\Dealer;
 
-class AudiofanzineOptions implements AdOptions
+class AudiofanzineOptions extends AdOptions
 {
     protected $product;
     protected $condition;
