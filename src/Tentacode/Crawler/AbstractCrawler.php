@@ -47,7 +47,6 @@ abstract class AbstractCrawler
         }
 
         $this->addAd($ad);
-        $this->markAsProcessed($ad);
     }
 
     public function takeScreenshot()

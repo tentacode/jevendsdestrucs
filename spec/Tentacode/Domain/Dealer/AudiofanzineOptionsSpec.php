@@ -9,7 +9,7 @@ class AudiofanzineOptionsSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('Mox ruby', 'Near mint', false);
+        $this->beConstructedWith('Mox ruby', 'Near mint', false, false);
     }
 
     function it_is_initializable()

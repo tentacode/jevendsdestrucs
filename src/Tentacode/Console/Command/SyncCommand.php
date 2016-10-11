@@ -55,25 +55,40 @@ class SyncCommand
         }
 
         foreach ($dealerOptions as $dealerOption) {
-            if ($dealerOption instanceof LeboncoinOptions) {
-                try {
-                    $this->synchronizeLeboncoin($ad);
-                } catch (\Exception $e) {
-                    $this->leboncoinCrawler->takeScreenshot();
-                    throw $e;
-                }
-            } elseif ($dealerOption instanceof AudiofanzineOptions) {
-                try {
-                    $this->synchronizeAudiofanzine($ad);
-                } catch (\Exception $e) {
-                    $this->audiofanzineCrawler->takeScreenshot();
-                    throw $e;
-                }
-            } else {
-                throw new \InvalidArgumentException(sprintf(
-                    'Unsupported dealer options "%s".',
-                    get_class($dealerOptions)
+            if ($dealerOption->isProcessed()) {
+                $this->output->writeln(sprintf(
+                    'Skipped "%s" on %s because it has already been processed there.',
+                    $ad->getTitle(),
+                    $dealerOption->getName()
                 ));
+
+                continue;
+            }
+
+            switch (true) {
+                case $dealerOption instanceof LeboncoinOptions:
+                    try {
+                        $this->synchronizeLeboncoin($ad);
+                    } catch (\Exception $e) {
+                        $this->leboncoinCrawler->takeScreenshot();
+                        throw $e;
+                    }
+                    break;
+
+                case $dealerOption instanceof AudiofanzineOptions:
+                    try {
+                        $this->synchronizeAudiofanzine($ad);
+                    } catch (\Exception $e) {
+                        $this->audiofanzineCrawler->takeScreenshot();
+                        throw $e;
+                    }
+                    break;
+
+                default:
+                    throw new \InvalidArgumentException(sprintf(
+                        'Unsupported dealer options "%s".',
+                        get_class($dealerOptions)
+                    ));
             }
 
             $dealerOption->setIsProcessed(true);

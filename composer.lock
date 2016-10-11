@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a1fc3322c1ff907307243dcde27bd59b",
-    "content-hash": "5e0ed754143fcc9f88e5ebec9d828bbc",
+    "hash": "9b36de2901e9ce0cb3dd1fdd1dcd067e",
+    "content-hash": "93ee3da530bc420f6e7d42d0538ac409",
     "packages": [
         {
             "name": "behat/mink",
@@ -1252,16 +1252,16 @@
         },
         {
             "name": "pdepend/pdepend",
-            "version": "2.2.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pdepend/pdepend.git",
-                "reference": "b086687f3a01dc6bb92d633aef071d2c5dd0db06"
+                "reference": "adf005ad5dc73133ff91358f6ab8172fee4ad223"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pdepend/pdepend/zipball/b086687f3a01dc6bb92d633aef071d2c5dd0db06",
-                "reference": "b086687f3a01dc6bb92d633aef071d2c5dd0db06",
+                "url": "https://api.github.com/repos/pdepend/pdepend/zipball/adf005ad5dc73133ff91358f6ab8172fee4ad223",
+                "reference": "adf005ad5dc73133ff91358f6ab8172fee4ad223",
                 "shasum": ""
             },
             "require": {
@@ -1288,7 +1288,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Official version of pdepend to be handled with Composer",
-            "time": "2016-03-10 15:15:04"
+            "time": "2016-09-17 14:29:38"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1341,20 +1341,20 @@
         },
         {
             "name": "phpmd/phpmd",
-            "version": "2.4.2",
+            "version": "2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "fccbdb6b222f6d7a6d35af1c396ba5435cec76a9"
+                "reference": "2b9c2417a18696dfb578b38c116cd0ddc19b256e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/fccbdb6b222f6d7a6d35af1c396ba5435cec76a9",
-                "reference": "fccbdb6b222f6d7a6d35af1c396ba5435cec76a9",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/2b9c2417a18696dfb578b38c116cd0ddc19b256e",
+                "reference": "2b9c2417a18696dfb578b38c116cd0ddc19b256e",
                 "shasum": ""
             },
             "require": {
-                "pdepend/pdepend": "~2.0",
+                "pdepend/pdepend": "^2.0.4",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -1402,7 +1402,7 @@
                 "phpmd",
                 "pmd"
             ],
-            "time": "2016-03-10 17:17:44"
+            "time": "2016-04-04 11:52:04"
         },
         {
             "name": "phpspec/php-diff",
@@ -2212,9 +2212,18 @@
             "time": "2016-02-04 12:57:09"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "2.2.4",
+            "alias_normalized": "2.2.4.0",
+            "version": "9999999-dev",
+            "package": "pdepend/pdepend"
+        }
+    ],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "pdepend/pdepend": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

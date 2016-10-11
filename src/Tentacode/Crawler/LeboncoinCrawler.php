@@ -94,9 +94,9 @@ class LeboncoinCrawler extends AbstractCrawler
             $rulesField->check();
             $this->find('css', 'h2.title')->click();
 
-            $this->pressButton('lbc_submit');
+            // $this->pressButton('lbc_submit');
         });
 
-        $this->assert()->pageTextContains(self::AD_ACCEPTED);
+        // $this->assert()->pageTextContains(self::AD_ACCEPTED);
     }
 }

@@ -35,10 +35,12 @@ class SyncCommandSpec extends ObjectBehavior
 
     function it_synchronize_an_ad_on_leboncoin($output, $ad, $adRepository, LeboncoinOptions $leboncoinOptions)
     {
+        $leboncoinOptions->isProcessed()->willReturn(false);
         $ad->getDealerOptions()->willReturn([
             $leboncoinOptions
         ]);
 
+        $leboncoinOptions->setIsProcessed(true)->shouldBeCalled();
         $output->writeln('<info>Syncing offers...</info>')->shouldBeCalled();
         $output->writeln('<info>Ad "Guitar" was synced on Leboncoin.</info>')->shouldBeCalled();
         $adRepository->updateAd($ad)->shouldBeCalled();
@@ -48,10 +50,12 @@ class SyncCommandSpec extends ObjectBehavior
 
     function it_synchronize_an_ad_on_audiofanzine($output, $ad, $adRepository, AudiofanzineOptions $audiofanzineOptions)
     {
+        $audiofanzineOptions->isProcessed()->willReturn(false);
         $ad->getDealerOptions()->willReturn([
             $audiofanzineOptions
         ]);
 
+        $audiofanzineOptions->setIsProcessed(true)->shouldBeCalled();
         $output->writeln('<info>Syncing offers...</info>')->shouldBeCalled();
         $output->writeln('<info>Ad "Guitar" was synced on Audiofanzine.</info>')->shouldBeCalled();
         $adRepository->updateAd($ad)->shouldBeCalled();
@@ -61,6 +65,18 @@ class SyncCommandSpec extends ObjectBehavior
 
     function it_does_not_synchronize_if_ad_as_no_dealer_options($output)
     {
+        $output->writeln('<error>Ad was not synced: Ad has no associated dealer options.</error>');
+
+        $this->__invoke($output);
+    }
+
+    function it_does_not_synchronize_if_ad_is_already_processed($output, $ad, AudiofanzineOptions $audiofanzineOptions)
+    {
+        $audiofanzineOptions->isProcessed()->willReturn(true);
+        $ad->getDealerOptions()->willReturn([
+            $audiofanzineOptions
+        ]);
+
         $output->writeln('<error>Ad was not synced: Ad has no associated dealer options.</error>');
 
         $this->__invoke($output);

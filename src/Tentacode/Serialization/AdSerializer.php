@@ -30,18 +30,21 @@ class AdSerializer
         $ad->setPrice($resolved['price']);
         $ad->setAllowPhoneContact($resolved['allow_phone_contact']);
         $ad->setPictures($resolved['pictures']);
-        $ad->setIsProcessed($resolved['is_processed']);
 
         if (isset($resolved['audiofanzine'])) {
             $ad->addDealerOptions(new AudiofanzineOptions(
                 $resolved['audiofanzine']['product'],
                 $resolved['audiofanzine']['condition'],
-                $resolved['audiofanzine']['with_accessories']
+                $resolved['audiofanzine']['with_accessories'],
+                $resolved['audiofanzine']['is_processed'] ?? false
             ));
         }
 
         if (isset($resolved['leboncoin'])) {
-            $ad->addDealerOptions(new LeboncoinOptions($resolved['leboncoin']['category']));
+            $ad->addDealerOptions(new LeboncoinOptions(
+                $resolved['leboncoin']['category'],
+                $resolved['leboncoin']['is_processed'] ?? false
+            ));
         }
 
         return $ad;
@@ -62,7 +65,6 @@ class AdSerializer
             'pictures' => [],
             'leboncoin' => null,
             'audiofanzine' => null,
-            'is_processed' => false,
         ]);
 
         $resolver->setAllowedTypes('title', 'string');
@@ -78,6 +80,18 @@ class AdSerializer
     {
         $dumper = new Dumper();
 
-        return $dumper->dump()
+        $serialized = [
+            'title' => $ad->getTitle(),
+            'text' => $ad->getText(),
+            'allow_phone_contact' => $ad->getAllowPhoneContact(),
+            'price' => $ad->getPrice(),
+            'pictures' => $ad->getPictures(),
+        ];
+
+        foreach ($ad->getDealerOptions() as $dealerOption) {
+            $serialized[$dealerOption->getName()] = $dealerOption->toArray();
+        }
+
+        return $dumper->dump($serialized, 2);
     }
 }
