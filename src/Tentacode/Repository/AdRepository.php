@@ -6,6 +6,7 @@ namespace Tentacode\Repository;
 
 use Symfony\Component\Finder\Finder;
 use Tentacode\Serialization\AdSerializer;
+use Tentacode\Domain\Ad;
 
 class AdRepository
 {
@@ -18,6 +19,12 @@ class AdRepository
         $this->filePattern = $filePattern;
     }
 
+    public function updateAd(Ad $ad)
+    {
+        $content = $this->adSerializer->serialize($ad);
+        file_put_contents($ad->getPath(), $content);
+    }
+
     public function getAds(): array
     {
         $ads = [];
@@ -26,7 +33,9 @@ class AdRepository
         $finder->files()->name($this->filePattern)->in($this->getAdsDirectory());
 
         foreach ($finder as $file) {
-            $ads[] = $this->adSerializer->deserialize(file_get_contents($file->getRealPath()));
+            $ad = $this->adSerializer->deserialize(file_get_contents($file->getRealPath()));
+            $ad->setPath($file->getRealPath());
+            $ads[] = $ad;
         }
 
         return $ads;

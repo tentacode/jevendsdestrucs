@@ -14,6 +14,7 @@ class Ad
     protected $allowPhoneContact = false;
     protected $pictures = [];
     protected $dealerOptions = [];
+    protected $path;
 
     public function setTitle(string $title)
     {
@@ -95,5 +96,15 @@ class Ad
         }
 
         throw new \InvalidArgumentException(sprintf('No dealer options with class "%s".', $class));
+    }
+
+    public function setPath(string $path)
+    {
+        $this->path = $path;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
     }
 }

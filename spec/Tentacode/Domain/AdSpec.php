@@ -20,8 +20,9 @@ class AdSpec extends ObjectBehavior
         $this->setPrice(100);
         $this->setAllowPhoneContact(true);
         $this->setPictures(['data/picture.jpg']);
+        $this->setPath('ad-example.yml');
 
-        $this->addDealerOptions(new LeboncoinOptions('foo'));
+        $this->addDealerOptions(new LeboncoinOptions('foo', false));
     }
 
     function it_is_initializable()
@@ -56,12 +57,12 @@ class AdSpec extends ObjectBehavior
 
     function it_has_dealer_options()
     {
-        $this->getDealerOptions()->shouldBeLike([new LeboncoinOptions('foo')]);
+        $this->getDealerOptions()->shouldBeLike([new LeboncoinOptions('foo', false)]);
     }
 
     function it_cant_add_a_dealer_options_from_already_existing_type()
     {
-        $anotherOptions = new LeboncoinOptions('bar');
+        $anotherOptions = new LeboncoinOptions('bar', false);
 
         $this
             ->shouldThrow(new \InvalidArgumentException(sprintf(
@@ -70,5 +71,10 @@ class AdSpec extends ObjectBehavior
             )))
             ->duringAddDealerOptions($anotherOptions)
         ;
+    }
+
+    function it_has_a_path()
+    {
+        $this->getPath()->shouldReturn('ad-example.yml');
     }
 }

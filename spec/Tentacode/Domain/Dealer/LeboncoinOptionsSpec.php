@@ -9,7 +9,7 @@ class LeboncoinOptionsSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('Instruments de musique');
+        $this->beConstructedWith('Instruments de musique', false);
     }
 
     function it_is_initializable()

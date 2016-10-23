@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Tentacode\Serialization;
 
 use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Dumper;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tentacode\Domain\Ad;
 use Tentacode\Domain\Dealer\AudiofanzineOptions;
@@ -34,12 +35,16 @@ class AdSerializer
             $ad->addDealerOptions(new AudiofanzineOptions(
                 $resolved['audiofanzine']['product'],
                 $resolved['audiofanzine']['condition'],
-                $resolved['audiofanzine']['with_accessories']
+                $resolved['audiofanzine']['with_accessories'],
+                $resolved['audiofanzine']['is_processed'] ?? false
             ));
         }
 
         if (isset($resolved['leboncoin'])) {
-            $ad->addDealerOptions(new LeboncoinOptions($resolved['leboncoin']['category']));
+            $ad->addDealerOptions(new LeboncoinOptions(
+                $resolved['leboncoin']['category'],
+                $resolved['leboncoin']['is_processed'] ?? false
+            ));
         }
 
         return $ad;
@@ -69,5 +74,24 @@ class AdSerializer
         $resolver->setAllowedTypes('pictures', 'array');
 
         return $resolver->resolve($data);
+    }
+
+    public function serialize(Ad $ad): string
+    {
+        $dumper = new Dumper();
+
+        $serialized = [
+            'title' => $ad->getTitle(),
+            'text' => $ad->getText(),
+            'allow_phone_contact' => $ad->getAllowPhoneContact(),
+            'price' => $ad->getPrice(),
+            'pictures' => $ad->getPictures(),
+        ];
+
+        foreach ($ad->getDealerOptions() as $dealerOption) {
+            $serialized[$dealerOption->getName()] = $dealerOption->toArray();
+        }
+
+        return $dumper->dump($serialized, 2);
     }
 }
