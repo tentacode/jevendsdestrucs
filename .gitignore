@@ -1,6 +1,7 @@
 .vagrant
 /bin/*
 !/bin/app
+!/bin/test
 /data/ads/*.yml
 /data/config/*.yml
 /data/pictures

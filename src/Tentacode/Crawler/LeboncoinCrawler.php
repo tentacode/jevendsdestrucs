@@ -62,6 +62,12 @@ class LeboncoinCrawler extends AbstractCrawler
         $this->fillField('body', $ad->getText());
         $this->fillField('price', $ad->getPrice());
 
+        $hidePhoneField = $this->findField('phone_hidden');
+        $ad->getAllowPhoneContact() ?
+            $hidePhoneField->uncheck() :
+            $hidePhoneField->check()
+        ;
+
         $pictures = array_slice($ad->getPictures(), 0, 3);
         foreach ($pictures as $key => $picture) {
             $this->findField('image'.$key)->attachFile($this->getPicturePath($picture));
@@ -94,9 +100,9 @@ class LeboncoinCrawler extends AbstractCrawler
             $rulesField->check();
             $this->find('css', 'h2.title')->click();
 
-            // $this->pressButton('lbc_submit');
+            $this->pressButton('lbc_submit');
         });
 
-        // $this->assert()->pageTextContains(self::AD_ACCEPTED);
+        $this->assert()->pageTextContains(self::AD_ACCEPTED);
     }
 }
