@@ -6,9 +6,9 @@
 
 ## What is this?
 
-This project is a mean to automatize offer creation in several online dealers, currently only French dealers Leboncoin and Audiofanzine are to be supported.
+This project is meant to automatize offer creation in several online dealers, currently only French dealers Leboncoin and Audiofanzine are to be supported.
 
-You just type your offers in YAML format and launch the command and they are automatically synchronized online with the chosen providers.
+You just write your offers in YAML format, launch the command and they are automatically synchronized online with the chosen providers.
 
 ## Try it yourself with Vagrant
 
@@ -23,4 +23,4 @@ It is still highly experimental (probably forever) so don't expect much of this.
 
 ## Technologies used
 
-I used PHP7, Silly, php-di, several Symfony Components and Mink. Find more in `composer.json`.
+I used PHP7, Silly, php-di, several Symfony Components and Mink. Find more in [composer.json](composer.json).
