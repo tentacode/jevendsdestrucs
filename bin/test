@@ -1,4 +1,0 @@
-#!/bin/bash
-bin/phpspec run -fpretty
-bin/phpmd src,spec text ruleset.xml
-bin/phpcs src spec
