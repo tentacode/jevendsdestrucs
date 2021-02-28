@@ -18,7 +18,7 @@ class LeboncoinCrawler {
       );
       await page.goto("https://www.leboncoin.fr");
       await page.waitFor(5000);
-      await page.screenshot({ path: "testlbc.png", fullPage: true });
+      await page.screenshot({ path: "output/testlbc.png", fullPage: true });
 
       await browser.close();
     })();
